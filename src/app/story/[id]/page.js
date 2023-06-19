@@ -17,7 +17,7 @@ export default async function Story({ params }) {
 
 	return (
 		<main>
-			<div className="bg-zinc-900 rounded border border-zinc-800 mx-4 my-6 p-4 divide-y divide-zinc-700">
+			<div className="bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800 mx-4 my-6 p-4 divide-y divide-zinc-200 dark:divide-zinc-700">
 				<div className="pb-4">
 					<p className="text-zinc-500 text-xs">
 						Posted by {story.by}{" "}

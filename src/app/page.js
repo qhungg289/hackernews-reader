@@ -28,9 +28,9 @@ async function getTopStories(page = 1) {
 	);
 
 	const fetchReqs = filteredTopStoriesId.map((id) =>
-		fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
-			(res) => res.json(),
-		),
+		fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
+			next: { revalidate: 10 },
+		}).then((res) => res.json()),
 	);
 	const topStories = await Promise.all(fetchReqs);
 
@@ -44,18 +44,21 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="flex items-center gap-2 px-4 py-2 mx-4 my-6 bg-zinc-900 rounded border border-zinc-800">
-				<p className="px-4 py-1 rounded-full font-bold bg-zinc-800">
+			<div className="flex items-center gap-2 px-4 py-2 mx-4 my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800">
+				<p className="px-4 py-1 rounded-full font-medium bg-zinc-200 dark:bg-zinc-800">
 					Top
 				</p>
 				<p className="px-4 py-1 rounded-full text-zinc-400">Best</p>
 				<p className="px-4 py-1 rounded-full text-zinc-400">New</p>
 			</div>
 
-			<div className="bg-zinc-900 border border-zinc-800 rounded mx-4 divide-y divide-zinc-800">
+			<div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded mx-4 md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">
 				{stories.map((story, index) => (
-					<div key={story.id} className="px-4 py-2 flex items-center">
-						<p className="text-zinc-500 w-8 mr-4">
+					<div
+						key={story.id}
+						className="px-4 py-2 grid grid-cols-[1fr_10fr]"
+					>
+						<p className="text-zinc-400 dark:text-zinc-500 flex items-center">
 							{itemsPerPage * (page - 1) + (index + 1)}.
 						</p>
 						<div>
@@ -63,7 +66,7 @@ export default async function Home({ searchParams }) {
 								<div className="space-x-1">
 									<a
 										href={story.url}
-										className="hover:underline"
+										className="hover:underline font-medium"
 									>
 										{story.title}
 									</a>
@@ -74,7 +77,7 @@ export default async function Home({ searchParams }) {
 							) : (
 								<Link
 									href={`/story/${story.id}`}
-									className="hover:underline"
+									className="hover:underline font-medium"
 								>
 									{story.title}
 								</Link>
@@ -99,15 +102,16 @@ export default async function Home({ searchParams }) {
 				))}
 			</div>
 
-			<p className="text-center mt-6 mx-auto bg-zinc-900 text-zinc-500 px-4 py-1 rounded border border-zinc-800 w-fit">
-				Page: <span className="text-zinc-50">{page}</span>/25
+			<p className="text-center mt-6 mx-auto bg-white dark:bg-zinc-900 text-zinc-500 px-4 py-1 rounded border border-zinc-200 dark:border-zinc-800 w-fit">
+				Page:{" "}
+				<span className="text-black dark:text-zinc-50">{page}</span>/25
 			</p>
 
-			<div className="flex items-center gap-4 mx-4 my-6">
+			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[65ch] md:mx-auto">
 				{page > 1 && (
 					<Link
 						href={{ query: { page: page - 1 } }}
-						className="bg-orange-600 flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
+						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
 					>
 						Previous
 					</Link>
@@ -119,7 +123,7 @@ export default async function Home({ searchParams }) {
 								page: page + 1,
 							},
 						}}
-						className="bg-orange-600 flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
+						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
 					>
 						More
 					</Link>

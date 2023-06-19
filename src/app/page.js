@@ -7,13 +7,13 @@ export const metadata = {
 
 const itemsPerPage = 20;
 
-async function getTopStories(page = 1) {
+async function getTopStories(page = 1, type = "top") {
 	// 25 pages in total
 	const itemsStartIndex = (page - 1) * itemsPerPage;
 	const itemsEndIndex = itemsStartIndex + itemsPerPage;
 
 	const res = await fetch(
-		"https://hacker-news.firebaseio.com/v0/topstories.json",
+		`https://hacker-news.firebaseio.com/v0/${type}stories.json`,
 		{ next: { revalidate: 10 } },
 	);
 
@@ -27,12 +27,13 @@ async function getTopStories(page = 1) {
 		itemsEndIndex,
 	);
 
-	const fetchReqs = filteredTopStoriesId.map((id) =>
-		fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
-			next: { revalidate: 10 },
-		}).then((res) => res.json()),
+	const topStories = await Promise.all(
+		filteredTopStoriesId.map((id) =>
+			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
+				next: { revalidate: 10 },
+			}).then((res) => res.json()),
+		),
 	);
-	const topStories = await Promise.all(fetchReqs);
 
 	return topStories;
 }
@@ -40,16 +41,29 @@ async function getTopStories(page = 1) {
 export default async function Home({ searchParams }) {
 	const page = Number(searchParams.page ?? 1);
 
-	const stories = await getTopStories(page);
+	const stories = await getTopStories(page, searchParams.type);
 
 	return (
 		<main>
 			<div className="flex items-center gap-2 px-4 py-2 mx-4 my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800">
-				<p className="px-4 py-1 rounded-full font-medium bg-zinc-200 dark:bg-zinc-800">
+				<Link
+					className="px-4 py-1 rounded-full text-zinc-400"
+					href={{ query: { type: "top" } }}
+				>
 					Top
-				</p>
-				<p className="px-4 py-1 rounded-full text-zinc-400">Best</p>
-				<p className="px-4 py-1 rounded-full text-zinc-400">New</p>
+				</Link>
+				<Link
+					className="px-4 py-1 rounded-full text-zinc-400"
+					href={{ query: { type: "best" } }}
+				>
+					Best
+				</Link>
+				<Link
+					className="px-4 py-1 rounded-full text-zinc-400"
+					href={{ query: { type: "new" } }}
+				>
+					New
+				</Link>
 			</div>
 
 			<div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded mx-4 md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">

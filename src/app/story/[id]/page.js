@@ -12,8 +12,43 @@ async function getStory(id) {
 	return res.json();
 }
 
+async function getAllChildComments(comment) {
+	if (!comment.kids) {
+		return;
+	}
+
+	const childCommentsId = comment.kids;
+
+	comment.kids = await Promise.all(
+		childCommentsId.map((id) =>
+			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
+				(res) => res.json(),
+			),
+		),
+	);
+
+	await Promise.all(comment.kids.map((c) => getAllChildComments(c)));
+}
+
+async function getCommentsOfStory(story) {
+	const topLevelCommentsId = story.kids;
+
+	const comments = await Promise.all(
+		topLevelCommentsId.map((id) =>
+			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
+				(res) => res.json(),
+			),
+		),
+	);
+
+	await Promise.all(comments.map((c) => getAllChildComments(c)));
+
+	return comments;
+}
+
 export default async function Story({ params }) {
 	const story = await getStory(params.id);
+	const comments = await getCommentsOfStory(story);
 
 	return (
 		<main>
@@ -47,7 +82,9 @@ export default async function Story({ params }) {
 					</div>
 				</div>
 
-				<div></div>
+				<div>
+					<pre>{JSON.stringify(comments, "", 2)}</pre>
+				</div>
 			</div>
 		</main>
 	);

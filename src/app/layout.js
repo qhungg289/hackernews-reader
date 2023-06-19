@@ -5,8 +5,9 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "Hacker News reader",
-	description: "Simple Hacker News reader application built with Next.js",
+	title: "Hacker News",
+	description:
+		"Simple Hacker News reader application built with Next.js (App router)",
 };
 
 export default function RootLayout({ children }) {

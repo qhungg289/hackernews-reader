@@ -1,8 +1,17 @@
 import { diffFromUnixSecondToNow } from "@/utils/time";
 
+export async function generateMetadata({ params }) {
+	const story = await getStory(params.id);
+
+	return {
+		title: `${story.title} - Hacker News`,
+	};
+}
+
 async function getStory(id) {
 	const res = await fetch(
 		`https://hacker-news.firebaseio.com/v0/item/${id}.json`,
+		{ cache: "no-store" },
 	);
 
 	if (!res.ok) {
@@ -52,7 +61,7 @@ export default async function Story({ params }) {
 
 	return (
 		<main>
-			<div className="bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800 mx-4 my-6 p-4 divide-y divide-zinc-200 dark:divide-zinc-700">
+			<div className="bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800 mx-4 my-6 md:max-w-[65ch] md:mx-auto p-4 divide-y divide-zinc-200 dark:divide-zinc-700">
 				<div className="pb-4">
 					<p className="text-zinc-500 text-xs">
 						Posted by {story.by}{" "}
@@ -62,7 +71,7 @@ export default async function Story({ params }) {
 						<div className="space-x-1">
 							<a
 								href={story.url}
-								className="hover:underline text-xl mt-4 inline-block font-bold"
+								className="hover:underline mt-4 inline-block font-medium"
 							>
 								{story.title}
 							</a>
@@ -71,7 +80,9 @@ export default async function Story({ params }) {
 							</span>
 						</div>
 					) : (
-						<p className="text-xl mt-4 font-bold">{story.title}</p>
+						<p className="text-xl mt-4 font-medium">
+							{story.title}
+						</p>
 					)}
 					{story.text && (
 						<p className="text-zinc-400 mt-2">{story.text}</p>

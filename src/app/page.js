@@ -1,9 +1,18 @@
+import { capitalize } from "@/utils/string";
 import { diffFromUnixSecondToNow } from "@/utils/time";
 import Link from "next/link";
 
-export const metadata = {
-	title: "Home - Hacker News reader",
-};
+export async function generateMetadata({ searchParams }) {
+	let type = searchParams.type;
+
+	if (!searchParams.type) {
+		type = "top";
+	}
+
+	return {
+		title: `${capitalize(type)} stories - Hacker News`,
+	};
+}
 
 const itemsPerPage = 20;
 
@@ -14,7 +23,7 @@ async function getTopStories(page = 1, type = "top") {
 
 	const res = await fetch(
 		`https://hacker-news.firebaseio.com/v0/${type}stories.json`,
-		{ next: { revalidate: 10 } },
+		{ cache: "no-store" },
 	);
 
 	if (!res.ok) {
@@ -30,7 +39,7 @@ async function getTopStories(page = 1, type = "top") {
 	const topStories = await Promise.all(
 		filteredTopStoriesId.map((id) =>
 			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
-				next: { revalidate: 10 },
+				cache: "no-store",
 			}).then((res) => res.json()),
 		),
 	);

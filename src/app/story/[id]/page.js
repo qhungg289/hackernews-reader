@@ -1,4 +1,5 @@
 import { diffFromUnixSecondToNow } from "@/utils/time";
+import CommentsList from "./CommentsList";
 
 export async function generateMetadata({ params }) {
 	const story = await getStory(params.id);
@@ -61,7 +62,7 @@ export default async function Story({ params }) {
 
 	return (
 		<main>
-			<div className="bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800 mx-4 my-6 md:max-w-[65ch] md:mx-auto p-4 divide-y divide-zinc-200 dark:divide-zinc-700">
+			<div className="bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 mx-4 my-6 md:max-w-[65ch] md:mx-auto p-4 divide-y-2 divide-zinc-200 dark:divide-zinc-800">
 				<div className="pb-4">
 					<p className="text-zinc-500 text-xs">
 						Posted by {story.by}{" "}
@@ -85,7 +86,10 @@ export default async function Story({ params }) {
 						</p>
 					)}
 					{story.text && (
-						<p className="text-zinc-400 mt-2">{story.text}</p>
+						<div
+							className="mt-2 prose dark:prose-invert"
+							dangerouslySetInnerHTML={{ __html: story.text }}
+						></div>
 					)}
 					<div className="text-zinc-500 text-sm space-x-3 mt-4">
 						<span>{story.score} points</span>
@@ -94,7 +98,7 @@ export default async function Story({ params }) {
 				</div>
 
 				<div>
-					<pre>{JSON.stringify(comments, "", 2)}</pre>
+					<CommentsList comments={comments} />
 				</div>
 			</div>
 		</main>

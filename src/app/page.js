@@ -1,6 +1,7 @@
 import { capitalize } from "@/utils/string";
 import { diffFromUnixSecondToNow } from "@/utils/time";
 import Link from "next/link";
+import SearchParamsNavLink from "./SearchParamsNavLink";
 
 export async function generateMetadata({ searchParams }) {
 	let type = searchParams.type;
@@ -54,28 +55,19 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="flex items-center gap-2 px-4 py-2 mx-4 my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800">
-				<Link
-					className="px-4 py-1 rounded-full text-zinc-400"
-					href={{ query: { type: "top" } }}
-				>
+			<div className="flex items-center gap-2 py-2 mx-4 my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 rounded border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600">
+				<SearchParamsNavLink href={{ query: { type: "top" } }}>
 					Top
-				</Link>
-				<Link
-					className="px-4 py-1 rounded-full text-zinc-400"
-					href={{ query: { type: "best" } }}
-				>
+				</SearchParamsNavLink>
+				<SearchParamsNavLink href={{ query: { type: "best" } }}>
 					Best
-				</Link>
-				<Link
-					className="px-4 py-1 rounded-full text-zinc-400"
-					href={{ query: { type: "new" } }}
-				>
+				</SearchParamsNavLink>
+				<SearchParamsNavLink href={{ query: { type: "new" } }}>
 					New
-				</Link>
+				</SearchParamsNavLink>
 			</div>
 
-			<div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded mx-4 md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">
+			<div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 rounded mx-4 md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">
 				{stories.map((story, index) => (
 					<div
 						key={story.id}
@@ -125,31 +117,35 @@ export default async function Home({ searchParams }) {
 				))}
 			</div>
 
-			<p className="text-center mt-6 mx-auto bg-white dark:bg-zinc-900 text-zinc-500 px-4 py-1 rounded border border-zinc-200 dark:border-zinc-800 w-fit">
+			<p className="text-center mt-6 mx-auto bg-white dark:bg-zinc-900 dark:border-t-zinc-600 text-zinc-500 px-4 py-1 rounded border border-zinc-200 dark:border-zinc-800 w-fit">
 				Page:{" "}
 				<span className="text-black dark:text-zinc-50">{page}</span>/25
 			</p>
 
 			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[65ch] md:mx-auto">
 				{page > 1 && (
-					<Link
-						href={{ query: { page: page - 1 } }}
-						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
-					>
-						Previous
-					</Link>
+					<button className="w-full">
+						<Link
+							href={{ query: { page: page - 1 } }}
+							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
+						>
+							Previous
+						</Link>
+					</button>
 				)}
 				{page < 25 && (
-					<Link
-						href={{
-							query: {
-								page: page + 1,
-							},
-						}}
-						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
-					>
-						More
-					</Link>
+					<button className="w-full">
+						<Link
+							href={{
+								query: {
+									page: page + 1,
+								},
+							}}
+							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
+						>
+							More
+						</Link>
+					</button>
 				)}
 			</div>
 		</main>

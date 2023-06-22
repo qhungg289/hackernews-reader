@@ -5,9 +5,30 @@ import { scrollToElement } from "@/utils/DOM";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, prevId, nextId }) {
 	const [isShow, setIsShow] = useState(true);
 	const params = useParams();
+
+	const commentKids = [];
+
+	if (comment.kids) {
+		for (let i = 0; i < comment.kids.length; i++) {
+			if (comment.kids[i].deleted) continue;
+
+			commentKids.push(
+				<Comment
+					key={comment.kids[i].id}
+					comment={comment.kids[i]}
+					prevId={i != 0 ? comment.kids[i - 1].id : null}
+					nextId={
+						i != comment.kids.length - 1
+							? comment.kids[i + 1].id
+							: null
+					}
+				/>,
+			);
+		}
+	}
 
 	return (
 		<div className="relative">
@@ -17,6 +38,22 @@ export default function Comment({ comment }) {
 						{comment.by} {diffFromUnixSecondToNow(comment.time)}
 					</span>
 					<div className="space-x-2">
+						{prevId && (
+							<button
+								onClick={() => scrollToElement(prevId)}
+								className="hover:underline"
+							>
+								Prev
+							</button>
+						)}
+						{nextId && (
+							<button
+								onClick={() => scrollToElement(nextId)}
+								className="hover:underline"
+							>
+								Next
+							</button>
+						)}
 						{comment.parent != params.id && (
 							<button
 								onClick={() => scrollToElement(comment.parent)}
@@ -40,11 +77,7 @@ export default function Comment({ comment }) {
 							className="prose dark:prose-invert"
 						></div>
 						{comment.kids && (
-							<div className="ml-8">
-								{comment.kids.map((c) => (
-									<Comment key={c.id} comment={c} />
-								))}
-							</div>
+							<div className="ml-8">{commentKids}</div>
 						)}
 					</>
 				)}

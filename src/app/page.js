@@ -55,7 +55,7 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[65ch] md:mx-auto bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md md:rounded border-b md:border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600">
+			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 md:rounded border-b md:border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600">
 				<SearchParamsNavLink href={{ query: { type: "top" } }}>
 					Top
 				</SearchParamsNavLink>
@@ -67,7 +67,7 @@ export default async function Home({ searchParams }) {
 				</SearchParamsNavLink>
 			</div>
 
-			<div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 md:rounded md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">
+			<div className="bg-white dark:bg-zinc-900 border border-t-0 md:border-t border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 md:rounded md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">
 				{stories.map((story, index) => (
 					<div
 						key={story.id}

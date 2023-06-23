@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
 			<body
 				className={`${inter.className} bg-zinc-100 dark:bg-zinc-950 dark:text-zinc-50 relative`}
 			>
-				<header className="bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 p-4 sticky top-0 isolate z-50">
+				<header className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 p-4 sticky top-0 isolate z-50">
 					<div className="md:max-w-[65ch] md:mx-auto flex items-center justify-center relative">
 						<BackNavigationButton />
 						<Link

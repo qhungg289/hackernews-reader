@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
 							href="/"
 							className="flex items-center justify-center gap-2 w-fit group"
 						>
-							<div className="bg-orange-600 shadow-lg hover:shadow-xl hover:shadow-orange-500/50 shadow-orange-500/50 text-white rounded aspect-square w-8 h-8 flex items-center justify-center font-medium select-none hover:-translate-y-1 transition-all">
+							<div className="bg-orange-600 text-white rounded aspect-square w-8 h-8 flex items-center justify-center font-medium select-none hover:-translate-y-1 transition-all">
 								H
 							</div>
 							<span>Hacker News</span>

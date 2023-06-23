@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
 async function getStory(id) {
 	const res = await fetch(
 		`https://hacker-news.firebaseio.com/v0/item/${id}.json`,
-		{ cache: "no-store" },
+		{ next: { revalidate: 60 } },
 	);
 
 	if (!res.ok) {
@@ -31,9 +31,9 @@ async function getAllChildComments(comment) {
 
 	comment.kids = await Promise.all(
 		childCommentsId.map((id) =>
-			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
-				(res) => res.json(),
-			),
+			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
+				next: { revalidate: 60 },
+			}).then((res) => res.json()),
 		),
 	);
 
@@ -45,9 +45,9 @@ async function getCommentsOfStory(story) {
 
 	const comments = await Promise.all(
 		topLevelCommentsId.map((id) =>
-			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(
-				(res) => res.json(),
-			),
+			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
+				next: { revalidate: 60 },
+			}).then((res) => res.json()),
 		),
 	);
 

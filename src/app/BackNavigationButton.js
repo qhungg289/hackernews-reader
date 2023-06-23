@@ -11,7 +11,7 @@ export default function BackNavigationButton() {
 	return (
 		<button
 			onClick={() => router.back()}
-			className="flex items-center justify-center gap-1 absolute inset-y-0 left-0 group"
+			className="flex items-center justify-center gap-1 absolute inset-y-0 left-0 group text-orange-500"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

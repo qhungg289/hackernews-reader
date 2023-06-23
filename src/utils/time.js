@@ -20,8 +20,8 @@ export function diffFromUnixSecondToNow(seconds) {
 			Math.floor(diff.minutes) == 1 ? "minute" : "minutes"
 		} ago`;
 	} else {
-		return `${diff.seconds} ${
-			diff.seconds == 1 ? "second" : "seconds"
+		return `${Math.floor(diff.seconds)} ${
+			Math.floor(diff.seconds) == 1 ? "second" : "seconds"
 		} ago`;
 	}
 }

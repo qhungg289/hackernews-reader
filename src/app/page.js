@@ -55,7 +55,7 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="flex items-center gap-2 py-2 md:my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 md:rounded border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600">
+			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[65ch] md:mx-auto bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md md:rounded border-b md:border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600">
 				<SearchParamsNavLink href={{ query: { type: "top" } }}>
 					Top
 				</SearchParamsNavLink>
@@ -127,7 +127,7 @@ export default async function Home({ searchParams }) {
 					<button className="w-full">
 						<Link
 							href={{ query: { page: page - 1 } }}
-							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
+							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
 						>
 							Previous
 						</Link>
@@ -141,7 +141,7 @@ export default async function Home({ searchParams }) {
 									page: page + 1,
 								},
 							}}
-							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500"
+							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
 						>
 							More
 						</Link>

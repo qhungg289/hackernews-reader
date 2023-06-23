@@ -38,7 +38,7 @@ export default function Comment({ comment, prevId, nextId }) {
 						{comment.by} {diffFromUnixSecondToNow(comment.time)}
 					</span>
 					<div className="space-x-2">
-						{prevId && (
+						{prevId && isShow && (
 							<button
 								onClick={() => scrollToElement(prevId)}
 								className="hover:underline"
@@ -46,7 +46,7 @@ export default function Comment({ comment, prevId, nextId }) {
 								Prev
 							</button>
 						)}
-						{nextId && (
+						{nextId && isShow && (
 							<button
 								onClick={() => scrollToElement(nextId)}
 								className="hover:underline"
@@ -54,7 +54,7 @@ export default function Comment({ comment, prevId, nextId }) {
 								Next
 							</button>
 						)}
-						{comment.parent != params.id && (
+						{comment.parent != params.id && isShow && (
 							<button
 								onClick={() => scrollToElement(comment.parent)}
 								className="hover:underline"
@@ -74,10 +74,10 @@ export default function Comment({ comment, prevId, nextId }) {
 					<>
 						<div
 							dangerouslySetInnerHTML={{ __html: comment.text }}
-							className="prose dark:prose-invert"
+							className="prose max-w-none dark:prose-invert"
 						></div>
 						{comment.kids && (
-							<div className="ml-8">{commentKids}</div>
+							<div className="ml-4 md:ml-8">{commentKids}</div>
 						)}
 					</>
 				)}

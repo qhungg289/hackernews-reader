@@ -22,7 +22,7 @@ export default function SearchParamsNavLink({ href, children }) {
 				{children}
 			</Link>
 			{isActive && (
-				<div className="absolute bottom-0 w-1 h-1 bg-orange-500 shadow shadow-orange-500 rounded-full"></div>
+				<div className="absolute bottom-0 w-1 h-1 bg-orange-500 rounded-full"></div>
 			)}
 		</div>
 	);

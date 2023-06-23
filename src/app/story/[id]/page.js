@@ -62,7 +62,7 @@ export default async function Story({ params }) {
 
 	return (
 		<main>
-			<div className="bg-white dark:bg-zinc-900 md:rounded border border-t-0 md:border-t border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 md:mx-auto md:my-6 md:max-w-[65ch] p-4 divide-y-2 divide-zinc-200 dark:divide-zinc-800 overflow-auto">
+			<div className="bg-white dark:bg-zinc-900 md:rounded border border-t-0 md:border-t border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 md:mx-auto md:my-6 md:max-w-[65ch] p-4 divide-y-2 divide-zinc-200 dark:divide-zinc-800 overflow-hidden">
 				<div className="pb-4">
 					<p className="text-zinc-500 text-xs">
 						Posted by {story.by}{" "}

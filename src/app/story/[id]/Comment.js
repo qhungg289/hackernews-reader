@@ -33,40 +33,51 @@ export default function Comment({ comment, prevId, nextId }) {
 	return (
 		<div className="relative">
 			<div className="my-4">
-				<div className="flex justify-between text-sm text-zinc-500">
+				<div className="flex flex-col md:flex-row gap-1 md:gap-2 text-sm text-zinc-500">
 					<span id={comment.id} className="scroll-mt-20">
 						{comment.by} {diffFromUnixSecondToNow(comment.time)}
 					</span>
-					<div className="space-x-2">
-						{prevId && isShow && (
-							<button
-								onClick={() => scrollToElement(prevId)}
-								className="hover:underline"
-							>
-								Prev
-							</button>
+					<div className="flex gap-2">
+						{comment.parent != params.id && (
+							<>
+								<span>|</span>
+								<button
+									onClick={() =>
+										scrollToElement(comment.parent)
+									}
+									className="hover:underline"
+								>
+									parent
+								</button>
+							</>
 						)}
-						{nextId && isShow && (
-							<button
-								onClick={() => scrollToElement(nextId)}
-								className="hover:underline"
-							>
-								Next
-							</button>
+						{prevId && (
+							<>
+								<span>|</span>
+								<button
+									onClick={() => scrollToElement(prevId)}
+									className="hover:underline"
+								>
+									prev
+								</button>
+							</>
 						)}
-						{comment.parent != params.id && isShow && (
-							<button
-								onClick={() => scrollToElement(comment.parent)}
-								className="hover:underline"
-							>
-								Parent
-							</button>
+						{nextId && (
+							<>
+								<span>|</span>
+								<button
+									onClick={() => scrollToElement(nextId)}
+									className="hover:underline"
+								>
+									next
+								</button>
+							</>
 						)}
 						<button
 							onClick={() => setIsShow(!isShow)}
 							className="hover:underline"
 						>
-							{isShow ? "Hide" : "Show"}
+							{isShow ? "[-]" : "[+]"}
 						</button>
 					</div>
 				</div>

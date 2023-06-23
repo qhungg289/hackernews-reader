@@ -87,7 +87,7 @@ export default async function Story({ params }) {
 					)}
 					{story.text && (
 						<div
-							className="mt-2 prose dark:prose-invert"
+							className="mt-2 prose prose-zinc dark:prose-invert"
 							dangerouslySetInnerHTML={{ __html: story.text }}
 						></div>
 					)}

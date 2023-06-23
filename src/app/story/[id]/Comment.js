@@ -84,7 +84,7 @@ export default function Comment({ comment, prevId, nextId }) {
 			</div>
 			<div
 				onClick={() => setIsShow(!isShow)}
-				className="h-full w-[0.15rem] bg-zinc-700 hover:bg-zinc-600 absolute inset-y-0 -left-2 rounded transition-colors cursor-pointer"
+				className="h-full w-[0.15rem] bg-zinc-200 dark:bg-zinc-700 hover:bg-zinc-600 absolute inset-y-0 -left-2 rounded transition-colors cursor-pointer"
 			></div>
 		</div>
 	);

@@ -27,7 +27,7 @@ export default function ScrollToTopButton() {
 			onClick={() => {
 				window.scrollTo(0, 0);
 			}}
-			className={`fixed right-4 bottom-4 bg-orange-600 hover:bg-orange-500 focus-visible:bg-orange-500 text-white rounded ${
+			className={`fixed right-4 bottom-4 bg-orange-600 hover:bg-orange-500 focus-visible:bg-orange-500 text-white rounded shadow-lg ${
 				isShow ? "opacity-100" : "pointer-events-none opacity-0"
 			} flex items-center gap-1 p-2 transition-all`}
 		>

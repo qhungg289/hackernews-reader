@@ -5,7 +5,7 @@ import { scrollToElement } from "@/utils/DOM";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 
-export default function Comment({ comment, prevId, nextId }) {
+export default function Comment({ comment, prevId, nextId, rootId }) {
 	const [isShow, setIsShow] = useState(true);
 	const params = useParams();
 
@@ -25,6 +25,7 @@ export default function Comment({ comment, prevId, nextId }) {
 							? comment.kids[i + 1].id
 							: null
 					}
+					rootId={rootId}
 				/>,
 			);
 		}
@@ -37,6 +38,19 @@ export default function Comment({ comment, prevId, nextId }) {
 					<span id={comment.id} className="scroll-mt-20">
 						{comment.by} {diffFromUnixSecondToNow(comment.time)}
 					</span>
+					{rootId &&
+						comment.parent != rootId &&
+						rootId != comment.id && (
+							<>
+								<span>|</span>
+								<button
+									onClick={() => scrollToElement(rootId)}
+									className="hover:underline"
+								>
+									root
+								</button>
+							</>
+						)}
 					{comment.parent != params.id && (
 						<>
 							<span>|</span>

@@ -12,6 +12,7 @@ export default function CommentsList({ comments }) {
 				comment={comments[i]}
 				prevId={i != 0 ? comments[i - 1].id : null}
 				nextId={i != comments.length - 1 ? comments[i + 1].id : null}
+				rootId={comments[i].id}
 			/>,
 		);
 	}

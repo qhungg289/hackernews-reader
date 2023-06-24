@@ -29,7 +29,7 @@ export default function ScrollToTopButton() {
 			}}
 			className={`fixed right-4 bottom-4 bg-orange-600 hover:bg-orange-500 focus-visible:bg-orange-500 text-white rounded ${
 				isShow ? "opacity-100" : "pointer-events-none opacity-0"
-			} flex items-center gap-1 p-2 md:px-4 md:py-2 transition-all`}
+			} flex items-center gap-1 p-2 transition-all`}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,6 @@ export default function ScrollToTopButton() {
 					d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
 				/>
 			</svg>
-			<span className="hidden md:block">Top</span>
 		</button>
 	);
 }

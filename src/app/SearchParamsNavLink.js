@@ -15,7 +15,7 @@ export default function SearchParamsNavLink({ href, children }) {
 				className={`px-4 py-1 rounded-full ${
 					isActive
 						? "text-orange-500 font-medium"
-						: "text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+						: "text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
 				} transition-colors`}
 				href={href}
 			>

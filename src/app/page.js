@@ -55,7 +55,7 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[65ch] md:mx-auto bg-white dark:bg-zinc-900 md:rounded border-b md:border border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600">
+			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[70ch] md:mx-auto bg-white dark:bg-black md:rounded border-b md:border border-neutral-200 dark:border-neutral-800">
 				<SearchParamsNavLink href={{ query: { type: "top" } }}>
 					Top
 				</SearchParamsNavLink>
@@ -67,13 +67,13 @@ export default async function Home({ searchParams }) {
 				</SearchParamsNavLink>
 			</div>
 
-			<div className="bg-white dark:bg-zinc-900 border border-t-0 md:border-t border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 md:rounded md:max-w-[65ch] md:mx-auto divide-y divide-zinc-200 dark:divide-zinc-800">
+			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[70ch] md:mx-auto divide-y divide-neutral-200 dark:divide-neutral-800">
 				{stories.map((story, index) => (
 					<div
 						key={story.id}
 						className="px-4 py-2 grid grid-cols-[1fr_10fr]"
 					>
-						<p className="text-zinc-400 dark:text-zinc-500 flex items-center">
+						<p className="text-neutral-400 dark:text-neutral-500 flex items-center">
 							{itemsPerPage * (page - 1) + (index + 1)}.
 						</p>
 						<div>
@@ -85,7 +85,7 @@ export default async function Home({ searchParams }) {
 									>
 										{story.title}
 									</a>
-									<span className="text-sm text-zinc-500">
+									<span className="text-sm text-neutral-500">
 										({new URL(story.url).hostname})
 									</span>
 								</div>
@@ -97,13 +97,13 @@ export default async function Home({ searchParams }) {
 									{story.title}
 								</Link>
 							)}
-							<div className="text-xs text-zinc-500 mt-1">
+							<div className="text-xs text-neutral-500 mt-1">
 								<span>
 									Posted by {story.by}{" "}
 									{diffFromUnixSecondToNow(story.time)}
 								</span>
 							</div>
-							<div className="text-zinc-500 space-x-3 mt-2">
+							<div className="text-neutral-500 space-x-3 mt-2">
 								<span>{story.score} points</span>
 								<Link
 									href={`/story/${story.id}`}
@@ -117,12 +117,13 @@ export default async function Home({ searchParams }) {
 				))}
 			</div>
 
-			<p className="text-center mt-6 mx-auto bg-white dark:bg-zinc-900 dark:border-t-zinc-600 text-zinc-500 px-4 py-1 rounded border border-zinc-200 dark:border-zinc-800 w-fit">
+			<p className="text-center mt-6 mx-auto bg-white dark:bg-black text-neutral-500 px-4 py-1 rounded border border-neutral-200 dark:border-neutral-800 w-fit">
 				Page:{" "}
-				<span className="text-black dark:text-zinc-50">{page}</span>/25
+				<span className="text-black dark:text-neutral-50">{page}</span>
+				/25
 			</p>
 
-			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[65ch] md:mx-auto">
+			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[70ch] md:mx-auto">
 				{page > 1 && (
 					<button className="w-full">
 						<Link

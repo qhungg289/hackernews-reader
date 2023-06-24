@@ -62,9 +62,9 @@ export default async function Story({ params }) {
 
 	return (
 		<main>
-			<div className="bg-white dark:bg-zinc-900 md:rounded border border-t-0 md:border-t border-zinc-200 dark:border-zinc-800 dark:border-t-zinc-600 md:mx-auto md:my-6 md:max-w-[65ch] p-4 divide-y-2 divide-zinc-200 dark:divide-zinc-800 overflow-x-auto">
-				<div className="pb-4">
-					<p className="text-zinc-500 text-xs">
+			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[70ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-x-auto">
+				<div className="pb-6">
+					<p className="text-neutral-500 text-xs">
 						Posted by {story.by}{" "}
 						{diffFromUnixSecondToNow(story.time)}
 					</p>
@@ -76,7 +76,7 @@ export default async function Story({ params }) {
 							>
 								{story.title}
 							</a>
-							<span className="text-sm text-zinc-500">
+							<span className="text-sm text-neutral-500">
 								({new URL(story.url).hostname})
 							</span>
 						</div>
@@ -87,11 +87,11 @@ export default async function Story({ params }) {
 					)}
 					{story.text && (
 						<div
-							className="mt-2 prose max-w-none prose-zinc dark:prose-invert"
+							className="mt-2 max-w-none prose prose-neutral dark:prose-invert"
 							dangerouslySetInnerHTML={{ __html: story.text }}
 						></div>
 					)}
-					<div className="text-zinc-500 text-sm space-x-3 mt-4">
+					<div className="text-neutral-500 text-sm space-x-3 mt-4">
 						<span>{story.score} points</span>
 						<span>{story.descendants} comments</span>
 					</div>

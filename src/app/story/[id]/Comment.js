@@ -95,7 +95,7 @@ export default function Comment({ comment, prevId, nextId, rootId }) {
 					<>
 						<div
 							dangerouslySetInnerHTML={{ __html: comment.text }}
-							className="prose prose-neutral dark:prose-invert max-w-none border-b border-neutral-200 dark:border-neutral-800 pb-6"
+							className="prose prose-neutral dark:prose-invert max-w-none border-b-2 border-neutral-200 dark:border-neutral-800 pb-6"
 						></div>
 						{comment.kids && (
 							<div className="ml-4 md:ml-8">{commentKids}</div>

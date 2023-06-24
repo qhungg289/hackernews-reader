@@ -81,9 +81,7 @@ export default async function Story({ params }) {
 							</span>
 						</div>
 					) : (
-						<p className="text-xl mt-4 font-medium">
-							{story.title}
-						</p>
+						<p className="mt-4 font-medium">{story.title}</p>
 					)}
 					{story.text && (
 						<div

@@ -1,5 +1,6 @@
 import { diffFromUnixSecondToNow } from "@/utils/time";
 import CommentsList from "./CommentsList";
+import Link from "next/link";
 
 export async function generateMetadata({ params }) {
 	const story = await getStory(params.id);
@@ -40,8 +41,17 @@ async function getAllChildComments(comment) {
 	await Promise.all(comment.kids.map((c) => getAllChildComments(c)));
 }
 
-async function getCommentsOfStory(story) {
-	const topLevelCommentsId = story.kids;
+async function getCommentsOfStory(story, page = 1) {
+	const commentsPerPage = 10;
+	const commentsStartIndex = (page - 1) * commentsPerPage;
+	const commentsEndIndex = commentsStartIndex + commentsPerPage;
+
+	const topLevelCommentsId = story.kids.slice(
+		commentsStartIndex,
+		commentsEndIndex,
+	);
+
+	const isNextPageAvailable = !!story.kids[commentsEndIndex + 1];
 
 	const comments = await Promise.all(
 		topLevelCommentsId.map((id) =>
@@ -53,12 +63,17 @@ async function getCommentsOfStory(story) {
 
 	await Promise.all(comments.map((c) => getAllChildComments(c)));
 
-	return comments;
+	return { comments, isNextPageAvailable };
 }
 
-export default async function Story({ params }) {
+export default async function Story({ params, searchParams }) {
+	const page = Number(searchParams.page ?? 1);
+
 	const story = await getStory(params.id);
-	const comments = await getCommentsOfStory(story);
+	const { comments, isNextPageAvailable } = await getCommentsOfStory(
+		story,
+		page,
+	);
 
 	return (
 		<main>
@@ -89,9 +104,12 @@ export default async function Story({ params }) {
 							dangerouslySetInnerHTML={{ __html: story.text }}
 						></div>
 					)}
-					<div className="text-neutral-400 dark:text-neutral-500 text-sm space-x-3 mt-4">
-						<span>{story.score} points</span>
-						<span>{story.descendants} comments</span>
+					<div className="text-neutral-400 dark:text-neutral-500 flex justify-between text-sm mt-4">
+						<div className="flex gap-3">
+							<span>{story.score} points</span>
+							<span>{story.descendants} comments</span>
+						</div>
+						{page > 1 && <span>page {page}</span>}
 					</div>
 				</div>
 
@@ -99,6 +117,16 @@ export default async function Story({ params }) {
 					<CommentsList comments={comments} />
 				</div>
 			</div>
+			{isNextPageAvailable && (
+				<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[70ch] md:mx-auto">
+					<Link
+						href={{ query: { page: page + 1 } }}
+						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
+					>
+						More comments...
+					</Link>
+				</div>
+			)}
 		</main>
 	);
 }

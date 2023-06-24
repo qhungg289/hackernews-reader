@@ -8,11 +8,11 @@ export default function Error({ error, reset }) {
 	}, [error]);
 
 	return (
-		<main className="h-full flex flex-col items-center justify-center">
-			<div className="space-y-6 rounded border border-neutral-200 dark:border-neutral-800 w-3/4 max-w-md p-4">
-				<div className="space-y-4">
+		<main className="flex flex-col items-center justify-center">
+			<div className="space-y-8 rounded bg-black border border-neutral-200 dark:border-neutral-800 w-5/6 max-w-md p-4 mt-24">
+				<div className="space-y-4 font-bold">
 					<p className="text-8xl">:(</p>
-					<p>Something went wrong!</p>
+					<p className="text-xl">Something went wrong!</p>
 				</div>
 				<button
 					onClick={() => reset()}

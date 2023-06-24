@@ -69,7 +69,7 @@ export default async function Story({ params }) {
 						{diffFromUnixSecondToNow(story.time)}
 					</p>
 					{story.url ? (
-						<div className="space-x-1">
+						<div className="flex items-baseline gap-1 flex-wrap">
 							<a
 								href={story.url}
 								className="hover:underline mt-4 inline-block font-medium"

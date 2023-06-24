@@ -12,7 +12,7 @@ export default function SearchParamsNavLink({ href, children }) {
 	return (
 		<div className="flex flex-col items-center relative">
 			<Link
-				className={`px-4 py-1 rounded-full ${
+				className={`px-4 py-1 ${
 					isActive
 						? "text-orange-500 font-medium"
 						: "text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"

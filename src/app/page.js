@@ -85,7 +85,7 @@ export default async function Home({ searchParams }) {
 									>
 										{story.title}
 									</a>
-									<span className="text-sm text-neutral-500">
+									<span className="text-sm text-neutral-400 dark:text-neutral-500">
 										({new URL(story.url).hostname})
 									</span>
 								</div>
@@ -97,13 +97,13 @@ export default async function Home({ searchParams }) {
 									{story.title}
 								</Link>
 							)}
-							<div className="text-xs text-neutral-500 mt-1">
+							<div className="text-xs text-neutral-400 dark:text-neutral-500 mt-1">
 								<span>
 									Posted by {story.by}{" "}
 									{diffFromUnixSecondToNow(story.time)}
 								</span>
 							</div>
-							<div className="text-neutral-500 space-x-3 mt-2">
+							<div className="text-neutral-400 dark:text-neutral-500 text-sm space-x-3 mt-2">
 								<span>{story.score} points</span>
 								<Link
 									href={`/story/${story.id}`}
@@ -117,7 +117,7 @@ export default async function Home({ searchParams }) {
 				))}
 			</div>
 
-			<p className="text-center mt-6 mx-auto bg-white dark:bg-black text-neutral-500 px-4 py-1 rounded border border-neutral-200 dark:border-neutral-800 w-fit">
+			<p className="text-center mt-6 mx-auto bg-white dark:bg-black text-neutral-400 dark:text-neutral-500 px-4 py-1 rounded border border-neutral-200 dark:border-neutral-800 w-fit">
 				Page:{" "}
 				<span className="text-black dark:text-neutral-50">{page}</span>
 				/25

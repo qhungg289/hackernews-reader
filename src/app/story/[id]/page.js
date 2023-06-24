@@ -64,7 +64,7 @@ export default async function Story({ params }) {
 		<main>
 			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[70ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-x-auto">
 				<div className="pb-6">
-					<p className="text-neutral-500 text-xs">
+					<p className="text-neutral-400 dark:text-neutral-500 text-xs">
 						Posted by {story.by}{" "}
 						{diffFromUnixSecondToNow(story.time)}
 					</p>
@@ -76,7 +76,7 @@ export default async function Story({ params }) {
 							>
 								{story.title}
 							</a>
-							<span className="text-sm text-neutral-500">
+							<span className="text-sm text-neutral-400 dark:text-neutral-500">
 								({new URL(story.url).hostname})
 							</span>
 						</div>
@@ -89,7 +89,7 @@ export default async function Story({ params }) {
 							dangerouslySetInnerHTML={{ __html: story.text }}
 						></div>
 					)}
-					<div className="text-neutral-500 text-sm space-x-3 mt-4">
+					<div className="text-neutral-400 dark:text-neutral-500 text-sm space-x-3 mt-4">
 						<span>{story.score} points</span>
 						<span>{story.descendants} comments</span>
 					</div>

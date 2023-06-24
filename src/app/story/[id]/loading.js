@@ -12,7 +12,10 @@ export default function Loading() {
 				</div>
 				<div className="animate-pulse">
 					{[...Array(10)].map((_, i) => (
-						<div key={i} className="my-6">
+						<div
+							key={i}
+							className="my-6 pb-6 border-b border-neutral-200 dark:border-neutral-800"
+						>
 							<div className="bg-neutral-300 dark:bg-neutral-600 rounded py-[0.35rem] w-1/5"></div>
 							{[...Array(3)].map((_, j) => (
 								<div

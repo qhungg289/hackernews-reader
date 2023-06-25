@@ -42,6 +42,10 @@ async function getAllChildComments(comment) {
 }
 
 async function getCommentsOfStory(story, page = 1) {
+	if (!story.kids) {
+		return { comments: [], isNextPageAvailable: false };
+	}
+
 	const commentsPerPage = 10;
 	const commentsStartIndex = (page - 1) * commentsPerPage;
 	const commentsEndIndex = commentsStartIndex + commentsPerPage;
@@ -77,8 +81,8 @@ export default async function Story({ params, searchParams }) {
 
 	return (
 		<main>
-			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[70ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-x-auto">
-				<div className="pb-6">
+			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[80ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-x-auto">
+				<div className="pb-4">
 					<p className="text-neutral-400 dark:text-neutral-500 font-mono text-xs">
 						Posted by {story.by}{" "}
 						{diffFromUnixSecondToNow(story.time)}
@@ -104,21 +108,24 @@ export default async function Story({ params, searchParams }) {
 							dangerouslySetInnerHTML={{ __html: story.text }}
 						></div>
 					)}
-					<div className="text-neutral-400 dark:text-neutral-500 flex justify-between font-mono text-sm mt-4">
-						<div className="flex gap-3">
+					<div className="text-neutral-400 dark:text-neutral-500 flex justify-between font-mono text-xs mt-4">
+						<span>
 							<span>{story.score} points</span>
+							{" | "}
 							<span>{story.descendants} comments</span>
-						</div>
+						</span>
 						{page > 1 && <span>page {page}</span>}
 					</div>
 				</div>
 
-				<div>
-					<CommentsList comments={comments} />
-				</div>
+				{comments.length > 0 && (
+					<div>
+						<CommentsList comments={comments} />
+					</div>
+				)}
 			</div>
 			{isNextPageAvailable && (
-				<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[70ch] md:mx-auto">
+				<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[80ch] md:mx-auto">
 					<Link
 						href={{ query: { page: page + 1 } }}
 						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"

@@ -55,7 +55,7 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[70ch] md:mx-auto bg-white dark:bg-black md:rounded border-b md:border border-neutral-200 dark:border-neutral-800">
+			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[80ch] md:mx-auto bg-white dark:bg-black md:rounded border-b md:border border-neutral-200 dark:border-neutral-800">
 				<SearchParamsNavLink href={{ query: { type: "top" } }}>
 					Top
 				</SearchParamsNavLink>
@@ -67,7 +67,7 @@ export default async function Home({ searchParams }) {
 				</SearchParamsNavLink>
 			</div>
 
-			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[70ch] md:mx-auto divide-y divide-neutral-200 dark:divide-neutral-800">
+			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[80ch] md:mx-auto divide-y divide-neutral-200 dark:divide-neutral-800">
 				{stories.map((story, index) => (
 					<div
 						key={story.id}
@@ -103,21 +103,24 @@ export default async function Home({ searchParams }) {
 									{diffFromUnixSecondToNow(story.time)}
 								</span>
 							</div>
-							<div className="text-neutral-400 dark:text-neutral-500 font-mono text-sm space-x-3 mt-2">
-								<span>{story.score} points</span>
-								<Link
-									href={`/story/${story.id}`}
-									className="hover:underline"
-								>
-									{story.descendants} comments
-								</Link>
+							<div className="text-neutral-400 dark:text-neutral-500 font-mono text-xs space-x-3 mt-2">
+								<span>
+									<span>{story.score} points</span>
+									{" | "}
+									<Link
+										href={`/story/${story.id}`}
+										className="hover:underline"
+									>
+										{story.descendants} comments
+									</Link>
+								</span>
 							</div>
 						</div>
 					</div>
 				))}
 			</div>
 
-			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[70ch] md:mx-auto">
+			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[80ch] md:mx-auto">
 				{page > 1 && (
 					<button className="w-full">
 						<Link

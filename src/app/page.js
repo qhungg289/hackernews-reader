@@ -117,17 +117,16 @@ export default async function Home({ searchParams }) {
 				))}
 			</div>
 
-			<p className="text-center mt-6 mx-auto bg-white dark:bg-black text-neutral-400 dark:text-neutral-500 px-4 py-1 rounded border border-neutral-200 dark:border-neutral-800 w-fit">
-				Page:{" "}
-				<span className="text-black dark:text-neutral-50">{page}</span>
-				/25
-			</p>
-
 			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[70ch] md:mx-auto">
 				{page > 1 && (
 					<button className="w-full">
 						<Link
-							href={{ query: { page: page - 1 } }}
+							href={{
+								query: {
+									page: page - 1,
+									type: searchParams.type,
+								},
+							}}
 							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
 						>
 							Previous
@@ -140,6 +139,7 @@ export default async function Home({ searchParams }) {
 							href={{
 								query: {
 									page: page + 1,
+									type: searchParams.type,
 								},
 							}}
 							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"

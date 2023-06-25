@@ -112,7 +112,7 @@ export default async function Home({ searchParams }) {
 				))}
 			</div>
 
-			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[80ch] md:mx-auto">
+			<div className="flex items-center gap-4 mx-4 mt-6 mb-16 md:max-w-[80ch] md:mx-auto">
 				{isNextPageAvailable && (
 					<Link
 						href={{

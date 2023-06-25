@@ -125,7 +125,7 @@ export default async function Story({ params, searchParams }) {
 				)}
 			</div>
 			{isNextPageAvailable && (
-				<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[80ch] md:mx-auto">
+				<div className="flex items-center gap-4 mx-4 mt-6 mb-16 md:max-w-[80ch] md:mx-auto">
 					<Link
 						href={{ query: { page: page + 1 } }}
 						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"

@@ -10,7 +10,12 @@ module.exports = {
 			center: true,
 			padding: "1rem",
 		},
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ["var(--font-roboto)"],
+				mono: ["var(--font-roboto-mono)"],
+			},
+		},
 	},
 	plugins: [require("@tailwindcss/typography")],
 };

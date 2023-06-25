@@ -7,13 +7,19 @@ export default function Header() {
 			<div className="md:max-w-[80ch] md:mx-auto flex items-center justify-between md:justify-start gap-8">
 				<Logo />
 				<div className="flex items-center gap-8">
-					<SearchParamsNavLink href={{ query: { type: "top" } }}>
+					<SearchParamsNavLink
+						href={{ pathname: "/", query: { type: "top" } }}
+					>
 						Top
 					</SearchParamsNavLink>
-					<SearchParamsNavLink href={{ query: { type: "best" } }}>
+					<SearchParamsNavLink
+						href={{ pathname: "/", query: { type: "best" } }}
+					>
 						Best
 					</SearchParamsNavLink>
-					<SearchParamsNavLink href={{ query: { type: "new" } }}>
+					<SearchParamsNavLink
+						href={{ pathname: "/", query: { type: "new" } }}
+					>
 						New
 					</SearchParamsNavLink>
 				</div>

@@ -10,7 +10,6 @@ export default function Loading() {
 						<div>
 							<div className="mt-1 grid grid-cols-4 gap-1">
 								<span className="col-span-3 py-3 rounded bg-neutral-300 dark:bg-neutral-600"></span>
-								<span className="py-3 rounded bg-neutral-300 dark:bg-neutral-600"></span>
 							</div>
 							<div className="mt-1 px-8 py-2 max-w-[30%] rounded bg-neutral-300 dark:bg-neutral-600"></div>
 							<div className="mt-1 grid grid-cols-8 gap-1">

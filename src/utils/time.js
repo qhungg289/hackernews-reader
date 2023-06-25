@@ -7,7 +7,7 @@ export function diffFromUnixSecondToNow(seconds) {
 		.diff(start, ["days", "hours", "minutes", "seconds"])
 		.toObject();
 
-	if (diff.days > 3) {
+	if (diff.days > 7) {
 		return start.toLocaleString();
 	}
 

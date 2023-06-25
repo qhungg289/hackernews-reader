@@ -34,7 +34,7 @@ export default function Comment({ comment, prevId, nextId, rootId }) {
 	return (
 		<div className="relative">
 			<div className="my-6">
-				<div className="flex gap-1 flex-wrap text-sm text-neutral-400 dark:text-neutral-500">
+				<div className="flex gap-1 flex-wrap font-mono text-sm text-neutral-400 dark:text-neutral-500">
 					<span id={comment.id} className="scroll-mt-20">
 						{comment.by} {diffFromUnixSecondToNow(comment.time)}
 					</span>

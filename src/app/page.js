@@ -97,13 +97,13 @@ export default async function Home({ searchParams }) {
 									{story.title}
 								</Link>
 							)}
-							<div className="text-xs text-neutral-400 dark:text-neutral-500 mt-1">
+							<div className="font-mono text-xs text-neutral-400 dark:text-neutral-500 mt-1">
 								<span>
 									Posted by {story.by}{" "}
 									{diffFromUnixSecondToNow(story.time)}
 								</span>
 							</div>
-							<div className="text-neutral-400 dark:text-neutral-500 text-sm space-x-3 mt-2">
+							<div className="text-neutral-400 dark:text-neutral-500 font-mono text-sm space-x-3 mt-2">
 								<span>{story.score} points</span>
 								<Link
 									href={`/story/${story.id}`}

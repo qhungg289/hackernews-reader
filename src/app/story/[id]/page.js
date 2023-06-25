@@ -79,7 +79,7 @@ export default async function Story({ params, searchParams }) {
 		<main>
 			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[70ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-x-auto">
 				<div className="pb-6">
-					<p className="text-neutral-400 dark:text-neutral-500 text-xs">
+					<p className="text-neutral-400 dark:text-neutral-500 font-mono text-xs">
 						Posted by {story.by}{" "}
 						{diffFromUnixSecondToNow(story.time)}
 					</p>
@@ -104,7 +104,7 @@ export default async function Story({ params, searchParams }) {
 							dangerouslySetInnerHTML={{ __html: story.text }}
 						></div>
 					)}
-					<div className="text-neutral-400 dark:text-neutral-500 flex justify-between text-sm mt-4">
+					<div className="text-neutral-400 dark:text-neutral-500 flex justify-between font-mono text-sm mt-4">
 						<div className="flex gap-3">
 							<span>{story.score} points</span>
 							<span>{story.descendants} comments</span>

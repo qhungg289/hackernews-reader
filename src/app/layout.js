@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
 				className={`${roboto.variable} ${roboto_mono.variable} font-sans bg-neutral-100 dark:bg-neutral-950 dark:text-neutral-50 relative h-full`}
 			>
 				<header className="bg-white dark:bg-black border-b border-neutral-200 dark:border-neutral-800 px-3 py-4 md:p-4 sticky top-0 isolate z-50">
-					<div className="md:max-w-[70ch] md:mx-auto flex items-center justify-center relative">
+					<div className="md:max-w-[80ch] md:mx-auto flex items-center justify-center relative">
 						<BackNavigationButton />
 						<Link
 							href="/"

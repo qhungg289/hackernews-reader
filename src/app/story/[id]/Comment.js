@@ -33,8 +33,8 @@ export default function Comment({ comment, prevId, nextId, rootId }) {
 
 	return (
 		<div className="relative">
-			<div className="my-6">
-				<div className="flex gap-1 flex-wrap font-mono text-sm text-neutral-400 dark:text-neutral-500">
+			<div className="my-4">
+				<div className="flex gap-1 mb-1 flex-wrap font-mono text-xs text-neutral-400 dark:text-neutral-500">
 					<span id={comment.id} className="scroll-mt-20">
 						{comment.by} {diffFromUnixSecondToNow(comment.time)}
 					</span>
@@ -95,7 +95,7 @@ export default function Comment({ comment, prevId, nextId, rootId }) {
 					<>
 						<div
 							dangerouslySetInnerHTML={{ __html: comment.text }}
-							className="prose prose-neutral dark:prose-invert max-w-none border-b-2 border-neutral-200 dark:border-neutral-800 pb-6"
+							className="prose prose-neutral dark:prose-invert max-w-none border-b-2 border-dashed border-neutral-200 dark:border-neutral-800 pb-4"
 						></div>
 						{comment.kids && (
 							<div className="ml-4 md:ml-8">{commentKids}</div>

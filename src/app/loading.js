@@ -1,7 +1,7 @@
 export default function Loading() {
 	return (
 		<main>
-			<div className="flex items-center gap-10 p-4 md:my-6 md:max-w-[70ch] md:mx-auto bg-white dark:bg-black md:rounded border-b md:border border-neutral-200 dark:border-neutral-800">
+			<div className="flex items-center gap-10 p-4 md:my-4 md:max-w-[80ch] md:mx-auto bg-white dark:bg-black md:rounded border-b md:border border-neutral-200 dark:border-neutral-800">
 				{[...Array(3)].map((_, i) => (
 					<span
 						key={i}
@@ -9,7 +9,7 @@ export default function Loading() {
 					></span>
 				))}
 			</div>
-			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded mb-6 md:max-w-[70ch] md:mx-auto divide-y divide-neutral-200 dark:divide-neutral-800">
+			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded mb-6 md:max-w-[80ch] md:mx-auto divide-y divide-neutral-200 dark:divide-neutral-800">
 				{[...Array(20)].map((_, i) => (
 					<div
 						key={i}

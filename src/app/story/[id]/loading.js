@@ -1,7 +1,7 @@
 export default function Loading() {
 	return (
 		<main>
-			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[70ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-auto">
+			<div className="bg-white dark:bg-black md:rounded border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:mx-auto md:my-6 md:max-w-[80ch] p-4 divide-y-2 divide-neutral-200 dark:divide-neutral-800 overflow-auto">
 				<div className="pb-6 animate-pulse">
 					<div className="bg-neutral-300 dark:bg-neutral-600 rounded py-2 px-20 w-3/12"></div>
 					<div className="bg-neutral-300 dark:bg-neutral-600 rounded py-2 px-36 mt-4"></div>

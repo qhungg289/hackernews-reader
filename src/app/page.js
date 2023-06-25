@@ -61,16 +61,13 @@ export default async function Home({ searchParams }) {
 		<main>
 			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[80ch] md:mx-auto md:mt-6 divide-y divide-neutral-200 dark:divide-neutral-800">
 				{stories.map((story, index) => (
-					<div
-						key={story.id}
-						className="px-4 py-2 grid grid-cols-[1fr_10fr]"
-					>
-						<p className="text-neutral-400 dark:text-neutral-500 flex items-center">
+					<div key={story.id} className="px-4 py-2">
+						<p className="text-neutral-400 dark:text-neutral-500">
 							{itemsPerPage * (page - 1) + (index + 1)}.
 						</p>
 						<div>
 							{story.url ? (
-								<div className="space-x-1">
+								<div className="flex items-baseline flex-wrap gap-1">
 									<a
 										href={story.url}
 										className="hover:underline font-medium"

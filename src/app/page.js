@@ -59,19 +59,7 @@ export default async function Home({ searchParams }) {
 
 	return (
 		<main>
-			<div className="sticky top-16 flex items-center gap-2 py-2 md:my-6 md:max-w-[80ch] md:mx-auto bg-white dark:bg-black md:rounded border-b md:border border-neutral-200 dark:border-neutral-800">
-				<SearchParamsNavLink href={{ query: { type: "top" } }}>
-					Top
-				</SearchParamsNavLink>
-				<SearchParamsNavLink href={{ query: { type: "best" } }}>
-					Best
-				</SearchParamsNavLink>
-				<SearchParamsNavLink href={{ query: { type: "new" } }}>
-					New
-				</SearchParamsNavLink>
-			</div>
-
-			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[80ch] md:mx-auto divide-y divide-neutral-200 dark:divide-neutral-800">
+			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[80ch] md:mx-auto md:mt-6 divide-y divide-neutral-200 dark:divide-neutral-800">
 				{stories.map((story, index) => (
 					<div
 						key={story.id}
@@ -126,19 +114,17 @@ export default async function Home({ searchParams }) {
 
 			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[80ch] md:mx-auto">
 				{isNextPageAvailable && (
-					<button className="w-full">
-						<Link
-							href={{
-								query: {
-									page: page + 1,
-									type: searchParams.type,
-								},
-							}}
-							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
-						>
-							More stories...
-						</Link>
-					</button>
+					<Link
+						href={{
+							query: {
+								page: page + 1,
+								type: searchParams.type,
+							},
+						}}
+						className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
+					>
+						More stories...
+					</Link>
 				)}
 			</div>
 		</main>

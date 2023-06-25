@@ -17,10 +17,9 @@ export async function generateMetadata({ searchParams }) {
 
 const itemsPerPage = 20;
 
-async function getTopStories(page = 1, type = "top") {
-	// 25 pages in total
-	const itemsStartIndex = (page - 1) * itemsPerPage;
-	const itemsEndIndex = itemsStartIndex + itemsPerPage;
+async function getStories(page = 1, type = "top") {
+	const storiesStartIndex = (page - 1) * itemsPerPage;
+	const storiesEndIndex = storiesStartIndex + itemsPerPage;
 
 	const res = await fetch(
 		`https://hacker-news.firebaseio.com/v0/${type}stories.json`,
@@ -33,11 +32,13 @@ async function getTopStories(page = 1, type = "top") {
 
 	const topStoriesId = await res.json();
 	const filteredTopStoriesId = topStoriesId.slice(
-		itemsStartIndex,
-		itemsEndIndex,
+		storiesStartIndex,
+		storiesEndIndex,
 	);
 
-	const topStories = await Promise.all(
+	const isNextPageAvailable = !!topStoriesId[storiesEndIndex + 1];
+
+	const stories = await Promise.all(
 		filteredTopStoriesId.map((id) =>
 			fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
 				cache: "no-store",
@@ -45,13 +46,16 @@ async function getTopStories(page = 1, type = "top") {
 		),
 	);
 
-	return topStories;
+	return { stories, isNextPageAvailable };
 }
 
 export default async function Home({ searchParams }) {
 	const page = Number(searchParams.page ?? 1);
 
-	const stories = await getTopStories(page, searchParams.type);
+	const { stories, isNextPageAvailable } = await getStories(
+		page,
+		searchParams.type,
+	);
 
 	return (
 		<main>
@@ -121,22 +125,7 @@ export default async function Home({ searchParams }) {
 			</div>
 
 			<div className="flex items-center gap-4 mx-4 my-6 md:max-w-[80ch] md:mx-auto">
-				{page > 1 && (
-					<button className="w-full">
-						<Link
-							href={{
-								query: {
-									page: page - 1,
-									type: searchParams.type,
-								},
-							}}
-							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
-						>
-							Previous
-						</Link>
-					</button>
-				)}
-				{page < 25 && (
+				{isNextPageAvailable && (
 					<button className="w-full">
 						<Link
 							href={{
@@ -147,7 +136,7 @@ export default async function Home({ searchParams }) {
 							}}
 							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
 						>
-							{page == 1 ? "More stories..." : "More"}
+							More stories...
 						</Link>
 					</button>
 				)}

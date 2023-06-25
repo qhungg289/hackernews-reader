@@ -147,7 +147,7 @@ export default async function Home({ searchParams }) {
 							}}
 							className="bg-orange-600 text-white flex items-center justify-center rounded w-full p-2 font-medium hover:bg-orange-500 focus-visible:bg-orange-500 transition-colors"
 						>
-							More
+							{page == 1 ? "More stories..." : "More"}
 						</Link>
 					</button>
 				)}

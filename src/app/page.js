@@ -1,7 +1,6 @@
 import { capitalize } from "@/utils/string";
 import { diffFromUnixSecondToNow } from "@/utils/time";
 import Link from "next/link";
-import SearchParamsNavLink from "./SearchParamsNavLink";
 
 export async function generateMetadata({ searchParams }) {
 	let type = searchParams.type;

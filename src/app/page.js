@@ -62,7 +62,7 @@ export default async function Home({ searchParams }) {
 			<div className="bg-white dark:bg-black border border-t-0 border-x-0 md:border-t md:border-x border-neutral-200 dark:border-neutral-800 md:rounded md:max-w-[80ch] md:mx-auto md:mt-6 divide-y divide-neutral-200 dark:divide-neutral-800">
 				{stories.map((story, index) => (
 					<div key={story.id} className="px-4 py-2">
-						<p className="text-neutral-400 dark:text-neutral-500">
+						<p className="text-neutral-500">
 							{itemsPerPage * (page - 1) + (index + 1)}.
 						</p>
 						<div>
@@ -74,7 +74,7 @@ export default async function Home({ searchParams }) {
 									>
 										{story.title}
 									</a>
-									<span className="text-sm text-neutral-400 dark:text-neutral-500">
+									<span className="text-sm text-neutral-500">
 										({new URL(story.url).hostname})
 									</span>
 								</div>
@@ -86,13 +86,13 @@ export default async function Home({ searchParams }) {
 									{story.title}
 								</Link>
 							)}
-							<div className="font-mono text-xs text-neutral-400 dark:text-neutral-500 mt-1">
+							<div className="font-mono text-xs text-neutral-500 mt-1">
 								<span>
 									Posted by {story.by}{" "}
 									{diffFromUnixSecondToNow(story.time)}
 								</span>
 							</div>
-							<div className="text-neutral-400 dark:text-neutral-500 font-mono text-xs space-x-3 mt-2">
+							<div className="text-neutral-500 font-mono text-xs space-x-3 mt-2">
 								<span>
 									<span>{story.score} points</span>
 									{" | "}
